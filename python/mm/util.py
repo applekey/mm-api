@@ -69,3 +69,14 @@ def find_ray_hit(remote, ray_origin, ray_direction):
     hitFrame.setFromMM(frame)
     return (bOK, hitFrame)
 
+def find_ray_hit_all(remote, ray_origin, ray_direction):
+    bOK = True
+    orig = ray_origin
+    dir = ray_direction
+    hitFrames = []
+    while bOK == True:
+        (bOK,hitFrame) = find_ray_hit(remote,orig,dir)
+        orig = hitFrame.origin
+        if bOK:
+            hitFrames.append(hitFrame)
+    return (bOK ,hitFrames)
